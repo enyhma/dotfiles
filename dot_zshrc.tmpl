@@ -1,0 +1,10 @@
+export PATH="$HOME/.local/bin:$PATH"
+
+eval "$(starship init zsh)"
+eval "$(/usr/local/bin/mise activate zsh)"
+eval "$(zoxide init zsh)"
+
+alias dots=chezmoi
+{{ if eq .chezmoi.os "darwin" -}}
+alias typora="open -a typora"
+{{ end -}}

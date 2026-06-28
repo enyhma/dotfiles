@@ -1,0 +1,10 @@
+[tools]
+flyctl = "latest"
+"github:max-sixty/worktrunk" = "latest"
+hledger = "latest"
+neovim = "latest"
+node = "latest"
+"npm:@earendil-works/pi-coding-agent" = "latest"
+pnpm = "latest"
+ripgrep = "latest"
+zoxide = "latest"
