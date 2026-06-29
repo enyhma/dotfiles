@@ -1,5 +1,6 @@
 [tools]
 claude = "latest"
+difftastic = "latest"
 flyctl = "latest"
 "github:max-sixty/worktrunk" = "latest"
 hledger = "latest"
