@@ -3,7 +3,7 @@
 ## Install
 
 ```sh
-sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply git@github.com:enyhma/dotfiles.git
+sh -c "$(curl -fsLS https://get.chezmoi.io)" -- -b $HOME/.local/bin init --apply git@github.com:enyhma/dotfiles.git
 ```
 
 This installs [chezmoi](https://chezmoi.io) and applies the dotfiles in one step.

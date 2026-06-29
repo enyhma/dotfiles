@@ -1,7 +1,0 @@
-packages:
-  darwin:
-    brews:
-      - "mise"
-      - "ghostty"
-      - "starship"
-    casks:
