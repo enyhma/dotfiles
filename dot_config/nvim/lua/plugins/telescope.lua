@@ -20,6 +20,13 @@ return {
       { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help tags" },
     },
     config = function()
+      -- ft_to_lang was removed in Neovim 0.11; telescope still calls it
+      if not vim.treesitter.ft_to_lang then
+        vim.treesitter.ft_to_lang = function(ft)
+          return vim.treesitter.language.get_lang(ft) or ft
+        end
+      end
+
       local telescope = require("telescope")
       local actions = require("telescope.actions")
       telescope.setup({

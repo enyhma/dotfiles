@@ -5,7 +5,9 @@ return {
     event = "VeryLazy",
     config = function()
       local wk = require("which-key")
-      wk.setup()
+      wk.setup({
+        delay = 400,
+      })
       wk.add({
         { "<leader>f", group = "Find" },
         { "<leader>b", group = "Buffer" },
@@ -35,15 +37,6 @@ return {
           map("n", "<leader>gb", gs.blame_line, "Blame line")
         end,
       })
-    end,
-  },
-
-  -- Auto-close brackets, quotes, etc.
-  {
-    "windwp/nvim-autopairs",
-    event = "InsertEnter",
-    config = function()
-      require("nvim-autopairs").setup()
     end,
   },
 

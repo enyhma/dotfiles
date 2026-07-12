@@ -23,11 +23,12 @@ vim.g.maplocalleader = "\\"
 
 require("config.options")
 require("config.keymaps")
+require("config.autocmds")
 
 require("lazy").setup({
   spec = {
     { import = "plugins" },
   },
   install = { colorscheme = { "tokyonight-night", "habamax" } },
-  checker = { enabled = true },
+  checker = { enabled = true, notify = false },
 })

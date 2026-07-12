@@ -2,7 +2,6 @@ return {
   -- Status line (bottom bar like VS Code)
   {
     "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("lualine").setup({
         options = {
@@ -17,7 +16,6 @@ return {
   {
     "akinsho/bufferline.nvim",
     version = "*",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("bufferline").setup({
         options = {
