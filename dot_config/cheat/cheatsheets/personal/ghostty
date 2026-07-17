@@ -1,0 +1,47 @@
+---
+syntax: text 
+tags: [ personal ]
+---
+# Ghostty keybindings
+
+# New tab:
+cmd+t
+
+# Close tab or split:
+cmd+w
+
+# Switch to tab N:
+cmd+1..9
+
+# Move tab left/right:
+cmd+shift+left/right
+
+# Split right:
+cmd+d
+
+# Split down:
+cmd+shift+d
+
+# Navigate splits:
+cmd+opt+arrows
+
+# Zoom/unzoom split:
+cmd+shift+enter
+
+# New window:
+cmd+n
+
+# Toggle fullscreen:
+cmd+enter
+
+# Clear screen:
+cmd+k
+
+# Search:
+cmd+f
+
+# Increase/decrease font size:
+cmd++ / cmd+-
+
+# Reset font size:
+cmd+0

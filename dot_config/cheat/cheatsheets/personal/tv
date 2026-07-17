@@ -1,0 +1,54 @@
+---
+syntax: bash
+tags: [ personal ]
+---
+# television (tv) — fuzzy finder
+
+# Launch with default channel (files):
+tv
+
+# Launch a specific channel:
+tv files
+tv text
+tv git-log
+tv git-diff
+tv git-status
+tv dirs
+tv history
+tv env
+tv alias
+
+# Use tv as a picker inside a shell pipeline:
+echo "$(tv files)"
+git checkout "$(tv git-log)"
+
+# Pipe input into tv for fuzzy selection:
+ls | tv
+
+# ── Navigation ──────────────────────────────────────────────
+
+# Move up/down:
+↑/↓  or  ctrl+k/j
+
+# Confirm selection:
+enter
+
+# Multi-select / deselect:
+tab / shift+tab
+
+# Quit:
+ctrl+c  or  esc
+
+# ── In-session ──────────────────────────────────────────────
+
+# Show keybinding help:
+?
+
+# Cycle to next channel:
+ctrl+t
+
+# Toggle preview:
+ctrl+o
+
+# Scroll preview:
+ctrl+u / ctrl+d
