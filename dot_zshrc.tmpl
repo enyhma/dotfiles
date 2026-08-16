@@ -1,10 +1,16 @@
 export PATH="$HOME/.local/bin:$PATH"
+export EDITOR=nvim
 
 eval "$(starship init zsh)"
 eval "$(~/.local/bin/mise activate zsh)"
+fastfetch
 eval "$(zoxide init zsh)"
 
 alias dots=chezmoi
+alias ff='fastfetch'
+alias ref='fastfetch'
 {{ if eq .chezmoi.os "darwin" -}}
 alias typora="open -a typora"
+alias hs="honeysuite"
+source ~/.config/honeysuite/honeysuite.zs
 {{ end -}}
