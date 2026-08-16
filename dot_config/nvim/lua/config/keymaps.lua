@@ -5,7 +5,7 @@ map("i", "jk", "<ESC>", { desc = "Exit insert mode" })
 
 -- Save / quit
 map("n", "<leader>w", "<cmd>w<cr>", { desc = "Save file" })
-map("n", "<leader>q", "<cmd>q<cr>", { desc = "Quit" })
+map("n", "<leader>q", "<cmd>bdelete<cr>", { desc = "Close buffer" })
 map("n", "<leader>Q", "<cmd>qa<cr>", { desc = "Quit all" })
 
 -- Clear search highlight with Escape
@@ -20,7 +20,7 @@ map("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 -- Navigate buffers (like Ctrl+Tab in VS Code)
 map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Previous buffer" })
 map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
-map("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Close buffer" })
+-- map("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Close buffer" })
 
 -- Resize windows with arrow keys
 map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })

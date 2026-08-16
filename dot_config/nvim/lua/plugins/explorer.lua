@@ -1,22 +1,14 @@
 return {
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v3.x",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-    },
+    "mikavilpas/yazi.nvim",
+    event = "VeryLazy",
+    dependencies = { "folke/snacks.nvim" },
     keys = {
-      { "<leader>e", "<cmd>Neotree toggle<cr>", desc = "Toggle file explorer" },
+      { "<leader>e", "<cmd>Yazi<cr>",     desc = "Open yazi (current file)" },
+      { "<leader>E", "<cmd>Yazi cwd<cr>", desc = "Open yazi (cwd)" },
     },
-    config = function()
-      require("neo-tree").setup({
-        window = { width = 30 },
-        filesystem = {
-          follow_current_file = { enabled = true },
-          hijack_netrw_behavior = "open_default",
-        },
-      })
-    end,
+    opts = {
+      open_for_directories = true,
+    },
   },
 }

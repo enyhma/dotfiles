@@ -9,7 +9,7 @@ return {
           "javascript", "typescript", "tsx",
           "python", "bash",
           "json", "yaml", "toml",
-          "markdown", "html", "css",
+          "markdown", "markdown_inline", "html", "css",
         },
         auto_install = true,
       })
