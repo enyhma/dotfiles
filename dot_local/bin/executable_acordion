@@ -59,4 +59,4 @@ fill=$(printf '─%.0s' $(seq 1 $((top_width - ${#prefix}))))
 printf "\n${d}──${r} ${s}★${r} ${k}Quick${r} ${d}${fill}${r}\n"
 printf "  ${d}cheat ghostty${r}\n"
 
-printf "\n${d}↩ ref · ff · cheatsheet${r}\n"
+printf "\n${d}↩ ref · acordion${r}\n"

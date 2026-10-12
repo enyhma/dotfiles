@@ -13,11 +13,10 @@ source ${ZIM_HOME}/init.zsh
 
 # ---- Tools ----
 eval "$(~/.local/bin/mise activate zsh)"
-cheatsheet
+acordion
 
 # ---- Aliases ----
 alias dots=chezmoi
-alias readme='cheatsheet'
 {{ if eq .chezmoi.os "darwin" -}}
 alias typora="open -a typora"
 alias hs="honeysuite"

@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+bat --style=plain --language=org "$HOME/.config/readme/README.org"
