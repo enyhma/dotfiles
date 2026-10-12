@@ -20,13 +20,10 @@ h_fill=$(printf '─%.0s' $(seq 1 12))
 u_block=$(
   printf "${d}──${r} ${c}⚙${r} ${k}Utils${r} ${d}${u_fill}${r}\n"
   printf "  ${c}%-9s${r}${d}%s${r}\n" \
-    bat   'cat w/ syntax' \
     fd    'fast find'     \
     rg    'fast grep'     \
     jq    'JSON processor'\
-    difft 'semantic diff' \
-    tv    'fuzzy finder'  \
-    z     'smart cd'
+    difft 'semantic diff'
 )
 
 # ── Workflow ──────────────────────────────────────────────────
