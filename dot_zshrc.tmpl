@@ -1,16 +1,28 @@
+# ---- Environment ----
 export PATH="$HOME/.local/bin:$PATH"
-export EDITOR=nvim
+export EDITOR=emacs
 
-eval "$(starship init zsh)"
+# ---- Zim ----
+ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
+# Install missing modules and update ${ZIM_HOME}/init.zsh if missing or outdated.
+if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZIM_CONFIG_FILE:-${ZDOTDIR:-${HOME}}/.zimrc} ]]; then
+  source /opt/homebrew/opt/zimfw/share/zimfw.zsh init
+fi
+# Initialize modules.
+source ${ZIM_HOME}/init.zsh
+
+# ---- Tools ----
 eval "$(~/.local/bin/mise activate zsh)"
-fastfetch
-eval "$(zoxide init zsh)"
+cheatsheet
 
+# ---- Aliases ----
 alias dots=chezmoi
-alias ff='fastfetch'
-alias ref='fastfetch'
+alias readme='cheatsheet'
 {{ if eq .chezmoi.os "darwin" -}}
 alias typora="open -a typora"
 alias hs="honeysuite"
 source ~/.config/honeysuite/honeysuite.zsh
-{{ end -}}
+{{ end }}
+# ---- Emacs ----
+export PATH="$HOME/.config/emacs/bin:$PATH"
+alias e="emacsclient -nw -a 'emacs'"
