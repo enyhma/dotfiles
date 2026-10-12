@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+printf '\r\033[2K'
+
+b=$'\033[1m'    # bold
+k=$'\033[1;33m' # bold yellow (matches fastfetch key color)
+c=$'\033[96m'   # cyan
+d=$'\033[2;37m' # dim white
+s=$'\033[93m'   # gold (star)
+r=$'\033[0m'    # reset
+
+# Fill widths: col_width - len("── ICON LABEL ")
+# Utils:    25 - 11 = 14  (2+9+14 for "JSON processor")
+# Workflow: 27 - 14 = 13  (2+9+16 for "dotfiles manager")
+# Help:     22 - 10 = 12  (2+9+11 for "cheatsheets")
+u_fill=$(printf '─%.0s' $(seq 1 14))
+wf_fill=$(printf '─%.0s' $(seq 1 13))
+h_fill=$(printf '─%.0s' $(seq 1 12))
+
+# ── Utils ─────────────────────────────────────────────────────
+u_block=$(
+  printf "${d}──${r} ${c}⚙${r} ${k}Utils${r} ${d}${u_fill}${r}\n"
+  printf "  ${c}%-9s${r}${d}%s${r}\n" \
+    bat   'cat w/ syntax' \
+    fd    'fast find'     \
+    rg    'fast grep'     \
+    jq    'JSON processor'\
+    difft 'semantic diff' \
+    tv    'fuzzy finder'  \
+    z     'smart cd'
+)
+
+# ── Workflow ──────────────────────────────────────────────────
+wf_block=$(
+  printf "${d}──${r} ${c}⎇${r} ${k}Workflow${r} ${d}${wf_fill}${r}\n"
+  printf "  ${c}%-9s${r}${d}%s${r}\n" \
+    just 'task runner'     \
+    hurl 'HTTP testing'    \
+    dots 'dotfiles manager'
+)
+
+# ── Help ──────────────────────────────────────────────────────
+h_block=$(
+  printf "${d}──${r} ${c}⍰${r} ${k}Help${r} ${d}${h_fill}${r}\n"
+  printf "  ${c}%-9s${r}${d}%s${r}\n" \
+    cheat 'cheatsheets'
+)
+
+# ── Divider: full height of Utils (tallest column) ────────────
+u_lines=$(printf '%s\n' "$u_block" | wc -l | tr -d ' ')
+div=$(seq 1 "$u_lines" | awk -v p="  ${d}│${r}  " '{print p}')
+
+# ── Row 1: three columns ──────────────────────────────────────
+top=$(gum join --horizontal "$u_block" "$div" "$wf_block" "$div" "$h_block")
+printf '%s\n' "$top"
+
+# ── Row 2: Quick ──────────────────────────────────────────────
+top_width=$(printf '%s\n' "$top" | head -1 | sed $'s/\033\\[[0-9;]*m//g' | wc -m | tr -d ' ')
+top_width=$((top_width - 1))
+prefix="── ★ Quick "
+fill=$(printf '─%.0s' $(seq 1 $((top_width - ${#prefix}))))
+
+printf "\n${d}──${r} ${s}★${r} ${k}Quick${r} ${d}${fill}${r}\n"
+printf "  ${d}cheat ghostty${r}\n"
+
+printf "\n${d}↩ ref · ff · cheatsheet${r}\n"
