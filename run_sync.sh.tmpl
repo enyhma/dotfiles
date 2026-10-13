@@ -6,6 +6,14 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 brew bundle install --file=~/.config/brew/Brewfile --no-upgrade
 
+# Doom Emacs itself (the ~/.config/emacs framework) isn't tracked by
+# chezmoi -- only the personal config in ~/.config/doom is. Clone and
+# bootstrap it here, using the brew-installed emacs from the line above.
+if [ ! -d ~/.config/emacs ]; then
+    git clone --depth 1 https://github.com/doomemacs/core ~/.config/emacs
+    ~/.config/emacs/bin/doom install -! --no-config
+fi
+
 # Install Ghostty's terminfo into the default search path so processes
 # that don't inherit Ghostty's TERMINFO env var (e.g. the emacs daemon,
 # started via launchd) can still resolve TERM=xterm-ghostty.
