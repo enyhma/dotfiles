@@ -4,6 +4,8 @@ set -e
 {{ if eq .chezmoi.os "darwin" -}}
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+brew bundle install --file=~/.config/brew/Brewfile --no-upgrade
+
 # Install Ghostty's terminfo into the default search path so processes
 # that don't inherit Ghostty's TERMINFO env var (e.g. the emacs daemon,
 # started via launchd) can still resolve TERM=xterm-ghostty.

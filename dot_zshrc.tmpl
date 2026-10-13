@@ -15,6 +15,20 @@ source ${ZIM_HOME}/init.zsh
 eval "$(~/.local/bin/mise activate zsh)"
 acordion
 
+# ---- Package sync ----
+# After a package-mutating brew/mise command, back the resulting state
+# into chezmoi (autoCommit/autoPush then take care of git).
+_dotsync_precmd() {
+  case "$(fc -ln -1)" in
+    brew\ install\ *|brew\ uninstall\ *|brew\ rm\ *|brew\ remove\ *)
+      brew bundle dump --force --file=~/.config/brew/Brewfile &>/dev/null
+      chezmoi re-add ~/.config/brew/Brewfile &>/dev/null ;;
+    mise\ use\ *|mise\ rm\ *|mise\ unuse\ *|mise\ uninstall\ *)
+      chezmoi re-add ~/.config/mise.toml &>/dev/null ;;
+  esac
+}
+precmd_functions+=(_dotsync_precmd)
+
 # ---- Aliases ----
 alias dots=chezmoi
 {{ if eq .chezmoi.os "darwin" -}}
