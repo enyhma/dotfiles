@@ -24,7 +24,7 @@ _dotsync_precmd() {
       brew bundle dump --force --file=~/.config/brew/Brewfile &>/dev/null
       chezmoi re-add ~/.config/brew/Brewfile &>/dev/null ;;
     mise\ use\ *|mise\ rm\ *|mise\ unuse\ *|mise\ uninstall\ *)
-      chezmoi re-add ~/.config/mise.toml &>/dev/null ;;
+      chezmoi re-add ~/.config/mise/config.toml &>/dev/null ;;
   esac
 }
 precmd_functions+=(_dotsync_precmd)
