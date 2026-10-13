@@ -1,0 +1,22 @@
+#!/bin/bash
+set -e
+
+{{ if eq .chezmoi.os "darwin" -}}
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Install Ghostty's terminfo into the default search path so processes
+# that don't inherit Ghostty's TERMINFO env var (e.g. the emacs daemon,
+# started via launchd) can still resolve TERM=xterm-ghostty.
+if [ -d /Applications/Ghostty.app ] && [ ! -f ~/.terminfo/78/xterm-ghostty ]; then
+    tmp="$(mktemp)"
+    TERMINFO=/Applications/Ghostty.app/Contents/Resources/terminfo infocmp -x xterm-ghostty > "$tmp"
+    tic -x -o ~/.terminfo "$tmp"
+    rm "$tmp"
+fi
+
+if brew list emacs &>/dev/null; then
+    brew services start emacs
+fi
+{{ end -}}
+
+mise install
