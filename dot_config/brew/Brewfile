@@ -4,6 +4,8 @@ tap "dan-hart/tap"
 brew "coreutils"
 # GNU Emacs text editor
 brew "emacs", restart_service: :changed
+# Program providing model for GNU coding standards and practices
+brew "hello"
 # Cross-platform application to monitor your network traffic
 brew "sniffnet"
 # Terminal multiplexer
