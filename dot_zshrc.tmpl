@@ -13,6 +13,26 @@ source ${ZIM_HOME}/init.zsh
 
 # ---- Tools ----
 eval "$(~/.local/bin/mise activate zsh)"
+
+# Gate: `mise use`/`rm`/`unuse`/`remove` outside a git repo should always
+# target the global config. Auto-inject --global when it's missing, and
+# print a reminder so it's never silent.
+functions[_mise_activated]=$functions[mise]
+mise() {
+  if [[ "$1" == (use|rm|unuse|remove) ]] && ! git rev-parse --is-inside-work-tree &>/dev/null; then
+    local has_global=0 arg
+    for arg in "${@:2}"; do
+      [[ "$arg" == (-g|--global) ]] && has_global=1
+    done
+    if (( ! has_global )); then
+      echo "mise: not in a git repo, adding --global" >&2
+      _mise_activated "$1" --global "${@:2}"
+      return $?
+    fi
+  fi
+  _mise_activated "$@"
+}
+
 acordion
 
 # ---- Package sync ----
@@ -23,7 +43,7 @@ _dotsync_precmd() {
     brew\ install\ *|brew\ uninstall\ *|brew\ rm\ *|brew\ remove\ *)
       brew bundle dump --force --file=~/.config/brew/Brewfile &>/dev/null
       chezmoi re-add ~/.config/brew/Brewfile &>/dev/null ;;
-    mise\ use\ *|mise\ rm\ *|mise\ unuse\ *|mise\ uninstall\ *)
+    mise\ use\ *|mise\ rm\ *|mise\ unuse\ *|mise\ remove\ *)
       chezmoi re-add ~/.config/mise/config.toml &>/dev/null ;;
   esac
 }
