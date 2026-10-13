@@ -2,40 +2,29 @@
 syntax: bash
 tags: [ personal ]
 ---
-# chezmoi (dots) — dotfiles manager
+# 🗂️ chezmoi (dots) — dotfiles manager
 
-# Track a new file:
+# ✏️ Edit a tracked file
+dots edit ~/.config/foo   # edit a managed file
+dots cd                   # cd into source directory
+
+# 🔄 Pull in manual changes
+dots re-add               # sync all managed files from home
+
+# ✅ Preview & apply
+dots diff                 # show pending changes
+dots apply                # apply source to home
+
+# ➕ Track a new file
 dots add ~/.config/foo
 
-# Sync all managed files from home:
-dots re-add
-
-# Apply source to home:
-dots apply
-
-# Show pending changes:
-dots diff
-
-# Show changed files:
-dots status
-
-# Edit a managed file:
-dots edit ~/.config/foo
-
-# cd into source directory:
-dots cd
-
-# Run git in source directory:
+# 🔀 Commit & push
 dots git status
 dots git add -A
 dots git commit -m "msg"
 dots git push
 
-# Show template variables:
-dots data
-
-# Check for issues:
-dots doctor
-
-# List all managed files:
-dots managed
+# 🔍 Inspect
+dots status               # show changed files
+dots managed              # list all managed files
+dots doctor               # check for issues
