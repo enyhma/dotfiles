@@ -2,13 +2,20 @@
 
 * mise vs Homebrew
 - mise :: dev tools/runtimes, pinned in ~/.config/mise/config.toml (node, neovim, gh, ripgrep, lazygit, etc). Use it for anything version-able or project-scoped.
-- brew :: OS-level packages/casks mise doesn't package. Installed automatically on first ~chezmoi apply~ (see run_once_bootstrap.sh.tmpl).
+- brew :: OS-level packages/casks mise doesn't package. Tracked in ~/.config/brew/Brewfile, provisioned via ~brew bundle install~ on every apply (see run_sync.sh.tmpl).
 - Rule of thumb: if it has a mise backend, use mise; otherwise brew.
+- Outside a git repo, bare ~mise use~/~rm~ auto-gets ~--global~ (see the ~mise()~ wrapper in .zshrc) so changes always land in the tracked config. Inside a repo it's left alone, for per-project mise.toml files.
+- Installing/removing a brew or global mise package auto-syncs into chezmoi and pushes (see ~_dotsync_precmd~ in .zshrc + ~autoCommit~/~autoPush~ in chezmoi.toml). No manual ~dots re-add~ needed for those two.
 
 * cheat vs acordion vs readme
-- cheat :: look up one topic's reference on demand, e.g. ~cheat dots~, ~cheat tv~, ~cheat ghostty~. Sheets live in ~/.config/cheat/cheatsheets/personal/.
+- cheat :: look up one topic's reference on demand, e.g. ~cheat dots~, ~cheat ghostty~. Sheets live in ~/.config/cheat/cheatsheets/personal/.
 - acordion :: the dashboard shown on every new shell — the whole tool landscape at a glance.
 - readme (this command) :: longer "what and when" explanations, read on demand instead of on every shell.
 
 * dots (chezmoi)
 See ~cheat dots~ for the full command list.
+
+* Emacs
+- Doom Emacs. ~/.config/doom is the tracked personal config; ~/.config/emacs is the untracked upstream framework, cloned/bootstrapped fresh in run_sync.sh.tmpl.
+- Runs as a background daemon via ~brew services~ (started in run_sync.sh.tmpl); ~e~ connects to it with emacsclient.
+- Theme is kept matching Ghostty's: both on Tokyo Night (~doom-tokyo-night~ in doom/config.el, ~TokyoNight Night~ in ghostty/config). No automation for this — if you change one, change the other.
